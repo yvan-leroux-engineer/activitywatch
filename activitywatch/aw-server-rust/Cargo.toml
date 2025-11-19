@@ -1,0 +1,11 @@
+[workspace]
+members = [
+    "aw-datastore",
+    "aw-models",
+    "aw-transform",
+    "aw-server",
+    "aw-sync",
+    "aw-query",
+]
+# Exclude aw-client-rust from workspace build (it's a library without binaries)
+resolver = "2"

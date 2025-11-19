@@ -1,0 +1,64 @@
+"""
+FastAPI application entry point for ActivityWatch API
+"""
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
+
+from app.core.database import init_db, close_db
+from app.api.v1 import buckets, events, query, heartbeat
+from app.middleware.error_handler import setup_error_handlers
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Application lifespan events"""
+    # Startup
+    await init_db()
+    yield
+    # Shutdown
+    await close_db()
+
+
+# Create FastAPI app
+app = FastAPI(
+    title="ActivityWatch API",
+    description="REST API for ActivityWatch time tracking",
+    version="0.14.0",
+    lifespan=lifespan,
+)
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Configure appropriately for production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Setup error handlers
+setup_error_handlers(app)
+
+# Include routers
+app.include_router(buckets.router, prefix="/api/v1/buckets", tags=["buckets"])
+app.include_router(events.router, prefix="/api/v1/events", tags=["events"])
+app.include_router(query.router, prefix="/api/v1/query", tags=["query"])
+app.include_router(heartbeat.router, prefix="/api/v1/heartbeat", tags=["heartbeat"])
+
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {"status": "healthy"}
+
+
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return {
+        "name": "ActivityWatch API",
+        "version": "0.14.0",
+        "docs": "/docs"
+    }
+

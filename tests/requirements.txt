@@ -1,0 +1,23 @@
+# Testing dependencies for ActivityWatch integration tests
+
+# Testing framework
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-timeout==2.2.0
+
+# HTTP client for API testing
+httpx==0.25.2
+
+# Database
+asyncpg>=0.29.0
+
+# Redis
+redis[hiredis]==5.0.1
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Utilities
+python-dateutil==2.8.2
+
