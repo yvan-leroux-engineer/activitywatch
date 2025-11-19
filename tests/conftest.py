@@ -44,8 +44,8 @@ REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
 REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "redis_password")
 
-API_URL = os.getenv("API_URL", "http://localhost:5600")
-WEBUI_URL = os.getenv("WEBUI_URL", "http://localhost:8080")
+API_URL = os.getenv("API_URL", "http://localhost:8080")  # Updated to match docker-compose port
+WEBUI_URL = os.getenv("WEBUI_URL", "http://localhost:80")  # Updated to match docker-compose port
 QUERY_URL = os.getenv("QUERY_URL", "http://localhost:8082")
 
 

@@ -82,6 +82,7 @@ API_KEY_AUTH_ENABLED=false
 
 ## Documentation
 
-- `ARCHITECTURE.md` - Architecture details
-- `SECURITY.md` - Security architecture
-- `deployment-docs/` - Deployment and configuration guides
+- `docs/ARCHITECTURE.md` - Architecture details
+- `docs/SECURITY.md` - Security architecture
+- `docs/deployment/` - Deployment and configuration guides
+- `docs/REFACTORING.md` - Refactoring notes and migration guide

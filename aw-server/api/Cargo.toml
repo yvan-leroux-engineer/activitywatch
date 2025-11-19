@@ -1,0 +1,11 @@
+[workspace]
+members = [
+    "aw-datastore",
+    "aw-models",
+    "aw-transform",
+    "aw-server",
+    "aw-query",
+]
+# Exclude aw-client-rust and aw-sync from workspace build
+# aw-sync is a separate tool, not needed for the API server
+resolver = "2"
